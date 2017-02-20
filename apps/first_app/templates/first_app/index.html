@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+  </head>
+  <body>
+    <label for="course">Add a new course</label>
+    <form class="course" action="/courses" method="post">
+      {% csrf_token %}
+      <p>Name:  </p><input type="text" name="name" value=""><br>
+      <p>Description:  </p><textarea name="description" rows="8" cols="80"></textarea>
+      <button type="submit" name="button">Add</button>
+    </form>
+    {% load staticfiles %}
+    <table>
+      <tr>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        {% for course in courses%}
+        <td>{{course.name}}</td>
+        <td>{{course.course_id.description}}</td>
+        <td>{{course.created_at}}</td>
+        <td><form action="/courses/destroy/{{ course.id }}" method="get"><input type="submit" value="remove"></form></td>
+        <td><form action="/comments/{{ course.id }}" method="get"><input type="submit" value="comment"></form></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

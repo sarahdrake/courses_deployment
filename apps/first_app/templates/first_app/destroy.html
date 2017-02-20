@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Destroy</title>
+  </head>
+  <body>
+    <h1>Are you sure you want to destroy the following course??</h1>
+    <p>Name:  {{course.name}}</p>
+    <p>Description:  {{course.description}}</p>
+    <form class="" action="/bye" method="post">
+        {% csrf_token %}
+      <input type="hidden" name="id" value="{{course.id}}"></input>
+      <input type="submit" value="yes"></button>
+    </form>
+  </body>
+</html>
